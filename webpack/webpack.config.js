@@ -44,7 +44,8 @@ const common = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx', '.json', '.scss']
+        extensions: ['', '.js', '.jsx', '.json', '.scss'],
+        modulesDirectories: [ "web_modules", "node_modules", "bower_components", PATHS.src ]
     },
 
     module: {

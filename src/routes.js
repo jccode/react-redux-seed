@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './containers/app';
-import Home from './containers/home';
-import About from './containers/about';
-import LicaiProducts from './containers/licai';
+import app from './modules/app';
+import licai, { actions } from './modules/licai';
+
 
 const routes = (
-    <Route path="/" component={App}>
-        <IndexRoute component={Home} />
-        <Route path="about" component={About} />
-        <Route path="licai" component={LicaiProducts} />
+    <Route path="/" component={app.views.App}>
+        <IndexRoute component={app.views.Home} />
+        <Route path="about" component={app.views.About} />
+        <Route path="licai" component={licai.views.LicaiProducts} />
     </Route>
 );
 

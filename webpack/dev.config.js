@@ -8,6 +8,10 @@ module.exports = {
         'webpack-hot-middleware/client'
     ],
 
+    resolve: {
+        modulesDirectories: [path.join(__dirname, '../src/common')]
+    },
+
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
