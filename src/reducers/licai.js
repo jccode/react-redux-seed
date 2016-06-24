@@ -10,32 +10,6 @@ const initialState = {
     }
 };
 
-/*
-export default handleAction(
-    "FETCH_PRODUCTS", (state, action) => {
-        const data = action.payload.data;
-        if(data) {
-            return {
-                ...state,
-                licai: {
-                    ...state.licai,
-                    productList: {
-                        ...data,
-                        list: [
-                            ...state.licai.productList.list,
-                            ...data.pageData
-                        ]
-                    }
-                }
-            }
-        } else {
-            return state;
-        }
-
-    }, initialState
-)
-*/
-
 export default handleActions({
     FETCH_PRODUCTS: (state, action) => {
         const data = action.payload.data;

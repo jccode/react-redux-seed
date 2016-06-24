@@ -7,11 +7,6 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 
 
-if(module.hot) {
-    module.hot.accept();
-}
-
-
 const store = configureStore();
 
 ReactDOM.render(

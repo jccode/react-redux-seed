@@ -11,12 +11,21 @@ const loggerMiddleware = createLogger({
 });
 
 export default function configureStore(initalState) {
-    return createStore(
+    const store = createStore(
         reducer,
         initalState,
         applyMiddleware(
             promiseMiddleware,
             loggerMiddleware
         )
-    )
+    );
+
+    if(module.hot) {
+        module.hot.accept("../reducers", () => {
+            const nextRootReducers = require('../reducers/index');
+            store.replaceReducer(nextRootReducers);
+        });
+    }
+
+    return store;
 }
