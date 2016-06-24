@@ -3,7 +3,9 @@ import {licai} from '../actions/index';
 import { connect } from 'react-redux';
 
 
-@connect()
+const mapStateToProps = (state) => state.licai;
+
+@connect(mapStateToProps)
 class LicaiProducts extends Component {
 
     constructor (props) {
@@ -11,14 +13,20 @@ class LicaiProducts extends Component {
     }
 
     componentDidMount () {
-        let { dispatch, licai: {pageNum = 0} } = this.props;
-        dispatch(licai.fetch_products(pageNum));
+        const { dispatch, licai: {productList: {pageNum = -1}} } = this.props;
+        dispatch(licai.fetch_products(pageNum+1));
     }
 
     render() {
+        const {licai: {productList:{list = [],}}} = this.props;
         return (
             <div>
                 Licai
+                <ul>
+                    {list.map((product) =>
+                        <li key={product.productNo}>{product.productName}</li>
+                    )}
+                </ul>
             </div>
         )
     }

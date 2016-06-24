@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import licai from './licai';
-
-console.log(licai);
+import dummy from './dummy';
 
 export default combineReducers({
+    dummy,
     licai
 });
