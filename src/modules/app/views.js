@@ -25,7 +25,7 @@ class App extends Component {
 
 const About = (props) =>
         <div>
-            About page.
+            <p className="item">About page.</p>
             <input type="file" name="file"/>
         </div>
     ;

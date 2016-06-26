@@ -50,8 +50,10 @@ const common = {
 
     module: {
         loaders: [
-            {test: /\.css$/, loader: "style!css"},
-            {test: /\.scss$/, loader: "style!css?localIdentName=[path][name]--[local]!postcss-loader!sass"},
+            // {test: /\.css$/, loader: "style!css"},
+            // {test: /\.scss$/, loader: "style!css?localIdentName=[path][name]--[local]!postcss-loader!sass"},
+            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract("style",["css?localIdentName=[path][name]--[local]","postcss","sass"])},
             {test: /\.(woff|svg|ttf|eot)([\?]?.*)$/, loader: "file-loader?name=[name].[ext]"},
             {test: /\.jsx?$/, loader: "babel-loader", exclude: /node_modules/, query: babelConfig},
             {test: /\.png$/, loader: 'file?name=[path][name].[ext]'},
@@ -61,7 +63,8 @@ const common = {
     },
 
     plugins: [
-        new ExtractTextPlugin('bundle.css'),
+        new ExtractTextPlugin('bundle.css', { allChunks: true }),
+
         // Webpack 1.0
         new webpack.optimize.OccurenceOrderPlugin(),
         // Webpack 2.0 fixed this mispelling

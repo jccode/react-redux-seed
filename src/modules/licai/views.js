@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetch_products } from './actions';
+import styles from './styles.scss';
 
 
 const mapStateToProps = (state) => {
@@ -30,7 +31,7 @@ class LicaiProducts extends Component {
                 Licai
                 <ul>
                     {list.map((product) =>
-                        <li key={product.productNo}>{product.productName}</li>
+                        <li className={styles.item} key={product.productNo}>{product.productName}</li>
                     )}
                 </ul>
             </div>
