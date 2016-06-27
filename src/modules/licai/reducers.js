@@ -1,8 +1,10 @@
 import {handleAction, handleActions} from 'redux-actions';
+import {FETCH_PRODUCTS} from './constants';
 
 
 const initialState = {
     licai: {
+        isPending: false,
         productList: {
             pageNum: -1,
             list:[]
@@ -11,13 +13,23 @@ const initialState = {
 };
 
 export default handleActions({
-    FETCH_PRODUCTS: (state, action) => {
+    [`${FETCH_PRODUCTS}_PENDING`]: (state, action) => {
+        return {
+            ...state,
+            licai: {
+                ...state.licai,
+                isPending: true
+            }
+        };
+    },
+    [`${FETCH_PRODUCTS}_FULFILLED`]: (state, action) => {
         const data = action.payload.data;
         if(data) {
             return {
                 ...state,
                 licai: {
                     ...state.licai,
+                    isPending: false,
                     productList: {
                         ...data,
                         list: [
@@ -31,5 +43,11 @@ export default handleActions({
             return state;
         }
     },
+    [`${FETCH_PRODUCTS}_REJECTED`]: (state, action) => {
+        return {
+            ...state,
+            licai: { ...state.licai, isPending: false }
+        }
+    }
 }, initialState)
 

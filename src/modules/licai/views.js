@@ -5,8 +5,6 @@ import styles from './styles.scss';
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
-
     return state.licai;
 };
 
@@ -23,17 +21,18 @@ class LicaiProducts extends Component {
     }
 
     render() {
-        console.log(this.props);
-
-        const {productList:{list = [],}} = this.props;
+        const {isPending, productList:{list = [],}} = this.props;
+        const loading = isPending? <div className={styles.loading}>Loading...</div> : "";
         return (
             <div>
                 Licai
+                {loading}
                 <ul>
                     {list.map((product) =>
                         <li className={styles.item} key={product.productNo}>{product.productName}</li>
                     )}
                 </ul>
+
             </div>
         )
     }

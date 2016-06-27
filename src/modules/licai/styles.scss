@@ -6,3 +6,6 @@ $bgcolor: #f00;
   background: $bgcolor;
 }
 
+:local .loading {
+  color: $bgcolor;
+}

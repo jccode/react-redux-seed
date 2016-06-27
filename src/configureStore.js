@@ -1,8 +1,8 @@
 
 import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
-import promiseMiddleware from 'redux-promise'
-
+import thunkMiddleware from 'redux-thunk'
+import promiseMiddleware from 'redux-promise-middleware'
 import licai from './modules/licai'
 
 
@@ -16,7 +16,8 @@ export default function configureStore(initalState) {
         licai.reducers,
         initalState,
         applyMiddleware(
-            promiseMiddleware,
+            thunkMiddleware,
+            promiseMiddleware(),
             loggerMiddleware
         )
     );
