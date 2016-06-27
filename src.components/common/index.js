@@ -1,11 +1,11 @@
 
 import * as utils from './utils'
-
-console.log(utils);
+import reducer from './reducers'
 
 export default {
     NAME: 'common',
     http: utils.http,
+    reducer,
     utils
 };
 

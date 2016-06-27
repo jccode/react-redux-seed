@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetch_products } from './actions';
 import styles from './styles.scss';
+import {NAME} from './constants';
 
 
-const mapStateToProps = (state) => {
-    return state.licai;
-};
+const mapStateToProps = (state) => state[NAME];
+
 
 @connect(mapStateToProps)
 class LicaiProducts extends Component {

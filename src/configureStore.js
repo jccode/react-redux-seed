@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
-import licai from './modules/licai'
+import rootReducer from './reducer'
 
 
 const loggerMiddleware = createLogger({
@@ -13,7 +13,7 @@ const loggerMiddleware = createLogger({
 
 export default function configureStore(initalState) {
     const store = createStore(
-        licai.reducers,
+        rootReducer,
         initalState,
         applyMiddleware(
             thunkMiddleware,
@@ -28,8 +28,8 @@ export default function configureStore(initalState) {
         //     store.replaceReducer(nextRootReducers);
         // });
 
-        module.hot.accept(licai.reducers, () => {
-            const nextRootReducers = require('./modules/licai').reducers;
+        module.hot.accept(rootReducer, () => {
+            const nextRootReducers = require('./reducer').reducers;
             store.replaceReducer(nextRootReducers);
         });
     }
