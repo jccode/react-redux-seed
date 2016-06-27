@@ -3,7 +3,7 @@ import typeToReducer from 'type-to-reducer';
 import {NAME, FETCH_PRODUCTS} from './constants';
 
 const initialState = {
-    licai: {
+    [NAME]: {
         isPending: false,
         productList: {
             pageNum: -1,
@@ -57,8 +57,8 @@ export default typeToReducer({
     [FETCH_PRODUCTS]: {
         PENDING: (state, action) => ({
             ...state,
-            licai: {
-                ...state.licai,
+            [NAME]: {
+                ...state[NAME],
                 isPending: true
             }
         }),
@@ -67,8 +67,8 @@ export default typeToReducer({
             if(data) {
                 return {
                     ...state,
-                    licai: {
-                        ...state.licai,
+                    [NAME]: {
+                        ...state[NAME],
                         isPending: false,
                         productList: {
                             ...data,
@@ -85,7 +85,7 @@ export default typeToReducer({
         },
         REJECTED: (state, action) => ({
             ...state,
-            licai: { ...state.licai, isPending: false }
+            [NAME]: { ...state.licai, isPending: false }
         })
     }
 }, initialState);
