@@ -1,6 +1,6 @@
 import {handleAction, handleActions} from 'redux-actions';
-import {FETCH_PRODUCTS} from './constants';
-
+import typeToReducer from 'type-to-reducer';
+import {NAME, FETCH_PRODUCTS} from './constants';
 
 const initialState = {
     licai: {
@@ -12,6 +12,7 @@ const initialState = {
     }
 };
 
+/*
 export default handleActions({
     [`${FETCH_PRODUCTS}_PENDING`]: (state, action) => {
         return {
@@ -50,4 +51,41 @@ export default handleActions({
         }
     }
 }, initialState)
+*/
 
+export default typeToReducer({
+    [FETCH_PRODUCTS]: {
+        PENDING: (state, action) => ({
+            ...state,
+            licai: {
+                ...state.licai,
+                isPending: true
+            }
+        }),
+        FULFILLED: (state, action) => {
+            const data = action.payload.data;
+            if(data) {
+                return {
+                    ...state,
+                    licai: {
+                        ...state.licai,
+                        isPending: false,
+                        productList: {
+                            ...data,
+                            list: [
+                                ...state.licai.productList.list,
+                                ...data.pageData
+                            ]
+                        }
+                    }
+                }
+            } else {
+                return state;
+            }
+        },
+        REJECTED: (state, action) => ({
+            ...state,
+            licai: { ...state.licai, isPending: false }
+        })
+    }
+}, initialState);
