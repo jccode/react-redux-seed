@@ -5,7 +5,7 @@ const webpack = require('webpack');
 module.exports = {
 
     entry: [
-        'webpack-hot-middleware/client'
+        'webpack-hot-middleware/client?reload=true'
     ],
 
     resolve: {

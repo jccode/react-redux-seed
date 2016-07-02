@@ -40,6 +40,7 @@ class Home extends Component {
                 <ul>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/licai">Licai</Link></li>
+                    <li><Link to="/ex1">Example 1</Link></li>
                 </ul>
             </div>
         )
